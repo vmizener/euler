@@ -53,4 +53,4 @@ if __name__ == '__main__':
         print('Time elapsed: ', end='')
         if minutes > 0:
             print('{}m, '.format(minutes), end='')
-        print('{:.4f}s'.format(seconds))
+        print('{:.8f}s'.format(seconds))
