@@ -1,3 +1,4 @@
+"""
 def gen_fib():
     a, b = 0, 1
     while True:
@@ -14,16 +15,14 @@ def main():
             ret += next_fib
         next_fib = next(fib)
     return ret
-
-# Wow this solution is baller as hell (though actually slower lol)
 """
+
+# Wow this solution is baller as hell
 def main():
     # Steps between each even fib is phi^3 (phi is step between each fib, every 3rd is even)
-    step = lambda x: round(x*4.236068)
     last = 2
     ret = 0
     while last < 4000000:
         ret += last
-        last = step(last)
+        last = round(4.236068*last)
     return ret
-"""
