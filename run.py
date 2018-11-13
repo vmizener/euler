@@ -13,7 +13,7 @@ PROBLEMCALL = 'main'
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Run known ProjectEuler solutions.")
     parser.add_argument('problems', metavar='P', type=int, nargs='*',
-            help="Which problem(s) to run solutions for.  Will run in the order received (skipping dupliates and unimplemented solutions).")
+            help="Which problem(s) to run solutions for.  Will run in the order received (skipping duplicates and unimplemented solutions).")
     parser.add_argument('--list', dest='checklist', action='store_true',
             help="List all known problem solutions instead of running anything.")
 
@@ -22,7 +22,7 @@ if __name__ == '__main__':
     if args.checklist:
         print('Known problems:')
         for problem in sorted(problems):
-            print(int(problem), end=' ', flush=True)
+            print(int(problem.replace('p', ''), end=' ', flush=True))
         quit(0)
     problem_map = {int(problem.replace('p', '')): problem for problem in problems}
     seen = set()
