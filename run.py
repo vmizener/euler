@@ -2,8 +2,8 @@
 import argparse
 import importlib
 import os
+import os.path
 import pprint
-import sys
 import time
 
 PROBLEMSDIR = 'src/problems'
@@ -22,10 +22,11 @@ if __name__ == '__main__':
     if args.checklist:
         print('Known problems:')
         for problem in sorted(problems):
-            print(int(problem.replace('p', ''), end=' ', flush=True))
+            print(int(problem.replace('p', '')), end=' ', flush=True)
         quit(0)
     problem_map = {int(problem.replace('p', '')): problem for problem in problems}
     seen = set()
+    problem_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), PROBLEMSDIR)
     for arg in args.problems:
         arg = int(arg)
         print('/============================================================')
@@ -37,7 +38,7 @@ if __name__ == '__main__':
         if arg not in problem_map:
             print(' ... No implementation for this problem.  Skipping.')
             continue
-        os.chdir('{}/{}/{}'.format(os.getcwd(), PROBLEMSDIR, problem_map[arg]))
+        os.chdir(os.path.join(problem_dir, problem_map[arg]))
         module = importlib.import_module('{}.{}.{}'.format(
             PROBLEMSDIR.replace('/', '.'), problem_map[arg], PROBLEMFILE[:-3]))
         if not hasattr(module, 'main'):
